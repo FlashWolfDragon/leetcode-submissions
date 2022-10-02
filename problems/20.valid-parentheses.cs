@@ -9,7 +9,11 @@ public class Solution
 {
     public bool IsValid(string s)
     {
+<<<<<<< HEAD
         var dict = new System.Collections.Generic.Dictionary<char, char> {{')', '('}, {']', '['}, {'}', '{'}};
+=======
+        var dict = new System.Collections.Generic.Dictionary<char, char> { { ')', '(' }, { ']', '[' }, { '}', '{' } };
+>>>>>>> c42b797 (Initial Commit)
         var stack = new System.Collections.Generic.Stack<char>();
 
         foreach (var c in s)
@@ -19,7 +23,11 @@ public class Solution
             if (dict.ContainsKey(c))
             {
                 stack.Pop();
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> c42b797 (Initial Commit)
                 if (stack.Count == 0)
                     return false;
 
@@ -35,5 +43,10 @@ public class Solution
 }
 // @lc code=end
 
+<<<<<<< HEAD
 var solution = new Solution();
 Console.WriteLine(solution.IsValid("()"));
+=======
+// var solution = new Solution();
+// Console.WriteLine(solution.IsValid("()"));
+>>>>>>> c42b797 (Initial Commit)
