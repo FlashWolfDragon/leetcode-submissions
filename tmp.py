@@ -1,21 +1,18 @@
-def maxArea(height: list[int]) -> int:
-    i = 0
-    j = 1
-    area = -1
-    # area = length * width
+def minCost(colors: str, neededTime: list[int]) -> int:
+    currentIndex = 0
+    nextIndex = 1
+    totalTime = 0
 
-    while i < len(height) - 1:
-        width = (j - i)
-        currentArea = min(height[i], height[j]) * width
-        if (currentArea > area):
-            area = currentArea
+    while nextIndex < len(colors):
+        if (colors[currentIndex] == colors[nextIndex]):
+            totalTime += min(neededTime[currentIndex], neededTime[nextIndex])
 
-        j += 1
-        if (j >= len(height)):
-            i += 1
-            j = i + 1
+        currentIndex += 1
+        nextIndex += 1
 
-    return area
+    return totalTime
 
 
-print(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]))
+result = minCost("aaabbbabbbb", [3, 5, 10, 7, 5, 3, 5, 5, 4, 8, 1])
+# result = minCost("abaac", [1, 2, 3, 4, 5])
+print(result)
