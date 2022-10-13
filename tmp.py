@@ -1,18 +1,19 @@
-def minCost(colors: str, neededTime: list[int]) -> int:
-    currentIndex = 0
-    nextIndex = 1
-    totalTime = 0
+def findMaxAverage(nums, k: int) -> float:
+    # k == window size
+    currSum = sum(nums[:k])
+    maxAvg = currSum / k
+    i = 0
+    j = k
+    if (len(nums) <= k):
+        return sum(nums) / len(nums)
 
-    while nextIndex < len(colors):
-        if (colors[currentIndex] == colors[nextIndex]):
-            totalTime += min(neededTime[currentIndex], neededTime[nextIndex])
+    while (j < len(nums)):
+        currSum += nums[j] - nums[i - 1]
+        maxAvg = max(currSum / k, maxAvg)
+        i += 1
+        j += 1
 
-        currentIndex += 1
-        nextIndex += 1
-
-    return totalTime
-
-
-result = minCost("aaabbbabbbb", [3, 5, 10, 7, 5, 3, 5, 5, 4, 8, 1])
-# result = minCost("abaac", [1, 2, 3, 4, 5])
-print(result)
+    return maxAvg
+        
+a = findMaxAverage([])
+print(a)
