@@ -12,27 +12,51 @@
 #         self.next = next
 class Solution:
     def reverseBetween(self, head, left: int, right: int):
-        count = 0
         prev = None
         curr = head
-        while (curr and count <= left):
-            count += 1
-            curr = curr.next
-            prev = curr
+        reversing = False
+        leftNode = None
+        rightNode = None
 
-        while (curr and count >= left and count <= right):
-            count += 1
+        while (curr):
+            if curr.val == left:
+                leftNode = curr
+            elif curr.val == right:
+                rightNode = curr
+                afterRightNode = curr.next
+            
+            curr = curr.next
+
+        curr = head
+
+        while (curr):
             next_node = curr.next
-            curr.next = prev
+            if curr.val == left:
+                reversing = True
+                prev.next = rightNode
+                curr.next = afterRightNode
+                prev = curr
+                curr = next_node
+                continue
+
+            if curr.val == right:
+                return head
+
+            if reversing:
+                curr.next = next_node
+                curr.next = prev
+                prev = curr
+                curr = next_node
+                continue
+
             prev = curr
             curr = next_node
 
-        while (curr):
-            count += 1
-            curr = curr.next
-            prev = curr
+
+
 
         return head
+
 
 
 # @lc code=end
@@ -50,6 +74,7 @@ class ListNode:
             curr = curr.next
         return str(values)
 
+# [1 -> 2 -> 3 -> 4 -> 5]
 head = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
 res = Solution().reverseBetween(head, 2, 4)
 print(res)
